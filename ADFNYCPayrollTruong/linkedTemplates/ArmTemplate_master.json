@@ -1,0 +1,125 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ADFNYCPayrollTruong"
+		},
+		"ADLSGen2LinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ADLSGen2LinkedService'"
+		},
+		"SQLDBLinkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SQLDBLinkedService'"
+		},
+		"SynapseLinkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SynapseLinkedService'"
+		},
+		"SQLDBLinkedService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serversqlnycpayroll.database.windows.net"
+		},
+		"SQLDBLinkedService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db_nycpayroll"
+		},
+		"SQLDBLinkedService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "truongnn7"
+		},
+		"SynapseLinkedService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "synapse-nyc-payroll-truongnn7.sql.azuresynapse.net"
+		},
+		"SynapseLinkedService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SQLpool1"
+		},
+		"SynapseLinkedService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladminuser"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ADFNYCPayrollTruong_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLSGen2LinkedService_connectionString": {
+						"value": "[parameters('ADLSGen2LinkedService_connectionString')]"
+					},
+					"SQLDBLinkedService_password": {
+						"value": "[parameters('SQLDBLinkedService_password')]"
+					},
+					"SynapseLinkedService_password": {
+						"value": "[parameters('SynapseLinkedService_password')]"
+					},
+					"SQLDBLinkedService_properties_typeProperties_server": {
+						"value": "[parameters('SQLDBLinkedService_properties_typeProperties_server')]"
+					},
+					"SQLDBLinkedService_properties_typeProperties_database": {
+						"value": "[parameters('SQLDBLinkedService_properties_typeProperties_database')]"
+					},
+					"SQLDBLinkedService_properties_typeProperties_userName": {
+						"value": "[parameters('SQLDBLinkedService_properties_typeProperties_userName')]"
+					},
+					"SynapseLinkedService_properties_typeProperties_server": {
+						"value": "[parameters('SynapseLinkedService_properties_typeProperties_server')]"
+					},
+					"SynapseLinkedService_properties_typeProperties_database": {
+						"value": "[parameters('SynapseLinkedService_properties_typeProperties_database')]"
+					},
+					"SynapseLinkedService_properties_typeProperties_userName": {
+						"value": "[parameters('SynapseLinkedService_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "ADFNYCPayrollTruong_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADFNYCPayrollTruong_ArmTemplate_0')]"
+			]
+		}
+	]
+}

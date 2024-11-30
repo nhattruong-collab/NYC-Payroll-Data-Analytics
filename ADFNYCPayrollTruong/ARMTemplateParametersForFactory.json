@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADFNYCPayrollTruong"
+		},
+		"ADLSGen2LinkedService_connectionString": {
+			"value": ""
+		},
+		"SQLDBLinkedService_password": {
+			"value": ""
+		},
+		"SynapseLinkedService_password": {
+			"value": ""
+		},
+		"SQLDBLinkedService_properties_typeProperties_server": {
+			"value": "serversqlnycpayroll.database.windows.net"
+		},
+		"SQLDBLinkedService_properties_typeProperties_database": {
+			"value": "db_nycpayroll"
+		},
+		"SQLDBLinkedService_properties_typeProperties_userName": {
+			"value": "truongnn7"
+		},
+		"SynapseLinkedService_properties_typeProperties_server": {
+			"value": "synapse-nyc-payroll-truongnn7.sql.azuresynapse.net"
+		},
+		"SynapseLinkedService_properties_typeProperties_database": {
+			"value": "SQLpool1"
+		},
+		"SynapseLinkedService_properties_typeProperties_userName": {
+			"value": "sqladminuser"
+		}
+	}
+}
