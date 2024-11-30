@@ -1,5 +1,5 @@
 {
-	"name": "Data Aggregation Data Pipeline",
+	"name": "Data Aggregation Data pipeline",
 	"properties": {
 		"activities": [
 			{
@@ -22,13 +22,6 @@
 							"dataflow_param_fiscalyear": "2020"
 						}
 					},
-					"staging": {
-						"linkedService": {
-							"referenceName": "ADLSGen2LinkedService",
-							"type": "LinkedServiceReference"
-						},
-						"folderPath": "dirstaging"
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
@@ -38,7 +31,7 @@
 			}
 		],
 		"annotations": [],
-		"lastPublishTime": "2024-11-27T13:51:51Z"
+		"lastPublishTime": "2024-11-30T15:46:28Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
