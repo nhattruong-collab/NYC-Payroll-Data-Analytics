@@ -29,10 +29,14 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "Synapse_NYC_Payroll_Summary",
+						"referenceName": "Gen2_NYC_Payroll_Summary",
 						"type": "DatasetReference"
 					},
-					"name": "sink2PayrollSummary"
+					"name": "sink1GenPayrollSummary",
+					"rejectedDataLinkedService": {
+						"referenceName": "ADLSGen2LinkedService",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
@@ -126,22 +130,11 @@
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink1PayrollSummary",
 				"AggregatePayroll sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          FiscalYear as integer,",
-				"          AgencyName as string,",
-				"          TotalPaid as double",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     truncate:true,",
-				"     format: 'table',",
-				"     staged: true,",
-				"     allowCopyCommand: true,",
+				"     partitionFileNames:['SummaryPayroll'],",
+				"     truncate: true,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink2PayrollSummary"
+				"     partitionBy('hash', 1)) ~> sink1GenPayrollSummary"
 			]
 		}
 	}

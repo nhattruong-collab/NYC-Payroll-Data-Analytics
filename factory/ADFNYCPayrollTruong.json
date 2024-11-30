@@ -1,0 +1,9 @@
+{
+	"name": "ADFNYCPayrollTruong",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3f1a5740-3b47-44ff-ba15-bd42f1b438e6",
+		"tenantId": "f958e84a-92b8-439f-a62d-4f45996b6d07"
+	}
+}
